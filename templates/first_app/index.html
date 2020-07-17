@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <link  rel="stylesheet" href="{% static "css/style.css" %}"/>
+    <meta charset="utf-8">
+    <title>First App</title>
+  </head>
+  <body>
+    <h1>Welcome Back my boys Hope you have enjoyed it</h1>
+    {{ testData }}
+    <img src="{% static "images/background.jfif" %}",alt="A smooth"/>
+    <div class="border_class">
+      {% if access_records %}
+      <table>
+        <thead>
+          <th>Site Name</th>
+          <th> Url Link</th>
+        </thead>
+        <tbody>
+            {% for acc in access_records %}
+            <tr>
+              <td>
+              {{acc.name_rec}}
+            </td>
+            <td>
+              {{acc.date}}
+            </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+
+
+
+      </table>
+      {% else %}
+      <p> No Access Record Found </p>
+      {% endif  %}
+
+
+
+
+     </div>
+
+
+  </body>
+</html>
