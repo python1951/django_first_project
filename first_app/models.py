@@ -21,6 +21,14 @@ class AccessRecord(models.Model):
 def __str__(self):
     return str(self.date)
 
+class Login(models.Model):
+    name = models.CharField(max_length = 256)
+    email = models.EmailField()
+    password = models.CharField(max_length = 12)
+def __str__(self):
+    return self.name
+
+
 # class SiteName(models.Model):
 #     site_name = models.CharField(max_length = 256,)
 # def __str__(self):

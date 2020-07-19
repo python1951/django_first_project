@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <form  method="POST">
+      {{ login_form.as_p }}
+      {% csrf_token %}
+      <input type="submit" class="btn btn-primary" value="Submit">
+        <a href="{% url 'first_app:success' %}">Click here to finish!</a>
+      </form>
+
+    </div>
+
+  </body>
+</html>
