@@ -12,5 +12,12 @@ urlpatterns = [
     path('loginn/',views.user_login,name="user_login"),
     path('logout/',views.user_logout,name='logout'),
     path('special/',views.special,name ="special"),
+    path('list/',views.SchoolList.as_view(),name = "list"),
+    path("list/<int:pk>/",views.SchoolDetail.as_view(),name ='detail'),
+    path("update/list/<int:pk>/",views.SchoolUpdate.as_view(),name ='update'),
+    path('create/',views.SchoolCreate.as_view(),name = "create"),
+    path("delete/<int:pk>/",views.SchoolDelete.as_view(),name ='delete'),
+
+
 
 ]

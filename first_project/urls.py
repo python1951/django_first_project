@@ -21,6 +21,7 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('first_app/', include('first_app.urls')),
+    path('first_app/', include('first_app.urls',namespace = "first_app")),
     path('success/',views.success_view,name='success'),
+    path('test/',views.TestView.as_view(),name = 'test')
 ]

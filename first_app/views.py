@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from first_app.models import AccessRecord,Topic,WebPage,Login
+from first_app.models import AccessRecord,Topic,WebPage,Login,School
 from first_app import forms
 from first_app.forms import UserForm,UserFormm,UserProfileInfoForm
 from django.contrib.auth import authenticate,login,logout
-from django.urls import reverse
+from django.urls import reverse,reverse_lazy
 from django.http import HttpResponse,HttpResponseRedirect
 from  django.contrib.auth.decorators import login_required
+from . import models
+from django.views.generic import TemplateView,View,ListView,DetailView,CreateView,UpdateView,DeleteView
 
 # Create your views here.
 @login_required
@@ -82,3 +84,29 @@ def user_login(request):
             print("username is {} an password is {}".format(username,password))
     else:
         return render(request,'first_app/loginn.html')
+class TestView(TemplateView):
+    template_name = 'first_app/test.html'
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sqlinject'] = "Injected Successfully"
+        return context
+class SchoolList(ListView):
+    model = models.School#context = school_list
+    context_object_name = "school_list"
+    template_name='first_app/first_app_list.html'
+
+class SchoolDetail(DetailView):
+    model =models.School
+    template_name = 'first_app/first_app_detail.html'
+    context_object_name = "school_detail"
+class SchoolCreate(CreateView):
+    model = models.School
+    fields = ('name','principal','location')
+
+class SchoolUpdate(UpdateView):
+    fields= ('name','principal')
+    model = models.School
+
+class SchoolDelete(DeleteView):
+    model = models.School
+    success_url = reverse_lazy('first_app:list')
